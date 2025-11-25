@@ -14,7 +14,6 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       <Navbar />
-      
       <main className="flex-grow">
         <Hero />
         <Features />
@@ -22,9 +21,7 @@ const App: React.FC = () => {
         <Curriculum />
         <Logistics onOpenDisclaimer={() => setShowDisclaimer(true)} />
       </main>
-
       <Footer />
-
       <DisclaimerModal 
         isOpen={showDisclaimer} 
         onClose={() => setShowDisclaimer(false)} 
