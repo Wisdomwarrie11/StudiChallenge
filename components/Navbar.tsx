@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaGraduationCap, FaBars, FaTimes } from "react-icons/fa";
+import { NavLink, Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,9 +15,10 @@ const Navbar: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { name: "How it Works", href: "#how-it-works" },
-    { name: "Curriculum", href: "#curriculum" },
-    { name: "Schedule", href: "#schedule" },
+    { name: "Home", path: "/" },
+    { name: "About & Methodology", path: "/about" },
+    { name: "Curriculum", path: "/curriculum" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -24,33 +26,35 @@ const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled || mobileMenuOpen
           ? "bg-slate-900/95 backdrop-blur-md shadow-lg py-3"
-          : "bg-transparent py-5"
+          : "bg-slate-900 py-5" 
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <div className="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
+        <Link to="/" className="flex items-center gap-2 text-white font-bold text-xl tracking-tight">
           <FaGraduationCap className="text-indigo-400 text-2xl" />
           <span>StudiRad</span>
-        </div>
+        </Link>
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.name}
-              href={link.href}
-              className="text-slate-300 hover:text-white text-sm font-medium transition-colors"
+              to={link.path}
+              className={({ isActive }) => 
+                `text-sm font-medium transition-colors ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`
+              }
             >
               {link.name}
-            </a>
+            </NavLink>
           ))}
-          <a
-            href="#register"
+          <Link
+            to="/register"
             className="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold rounded-full transition-all shadow-lg hover:shadow-indigo-500/25"
           >
             Join Cohort
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Toggle */}
@@ -64,24 +68,26 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Nav Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-slate-900 border-t border-slate-800 p-6 flex flex-col gap-4 shadow-xl">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-slate-900 border-t border-slate-800 p-6 flex flex-col gap-4 shadow-xl h-screen">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.name}
-              href={link.href}
-              className="text-slate-300 hover:text-white text-lg font-medium"
+              to={link.path}
+              className={({ isActive }) => 
+                `text-lg font-medium ${isActive ? 'text-white' : 'text-slate-300 hover:text-white'}`
+              }
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
-            </a>
+            </NavLink>
           ))}
-          <a
-            href="#register"
+          <Link
+            to="/register"
             className="w-full text-center px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white text-lg font-semibold rounded-xl transition-all"
             onClick={() => setMobileMenuOpen(false)}
           >
             Join Cohort
-          </a>
+          </Link>
         </div>
       )}
     </header>

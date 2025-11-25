@@ -1,7 +1,6 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
-
-
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
   return (
@@ -28,19 +27,19 @@ const Hero: React.FC = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <a
-            href="#register"
+          <Link
+            to="/register"
             className="px-8 py-4 bg-white text-slate-900 rounded-xl font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] hover:bg-indigo-50 transition-all flex items-center gap-2 group"
           >
             Start Your Journey
             <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
-            href="#curriculum"
+          </Link>
+          <Link
+            to="/curriculum"
             className="px-8 py-4 bg-slate-800 text-white border border-slate-700 rounded-xl font-bold text-lg hover:bg-slate-700 transition-all"
           >
             View Syllabus
-          </a>
+          </Link>
         </div>
 
         {/* Stats / Social Proof */}

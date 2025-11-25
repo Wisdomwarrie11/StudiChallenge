@@ -84,7 +84,8 @@ const Logistics: React.FC<LogisticsProps> = ({ onOpenDisclaimer }) => {
   const handlePayment = (e: React.FormEvent) => {
     e.preventDefault();
     if (email && name && qualification && referralSource) {
-        initializePayment(onSuccess, onClose);
+        // Fix: initializePayment expects an object argument in this version
+        initializePayment({ onSuccess, onClose });
     }
   };
 
